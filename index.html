@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Una Política Diferente</title>
+  <link rel="icon" href="Logos/UnaPoliticaDiferente4.jpeg" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <div class="page-accent accent-blue"></div>
+  <div class="page-accent accent-red"></div>
+
+  <main class="app-container">
+    <section class="auth-section" id="authSection">
+      <div class="auth-card">
+        <div class="auth-side">
+          <div class="brand-top">
+            <div class="brand-logo-box large">
+              <img src="Logos/UnaPoliticaDiferente4.jpeg" alt="Logo Una Política Diferente" />
+            </div>
+
+            <div class="brand-copy centered">
+              <span class="eyebrow">Plataforma territorial</span>
+              <h1>Una Política Diferente</h1>
+              <p>Sistema interno de organización, registro y consulta territorial.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-main">
+          <div class="tabs">
+            <button class="tab active" id="showLogin" type="button">Iniciar sesión</button>
+            <button class="tab" id="showRegister" type="button">Registrar usuario</button>
+          </div>
+
+          <form id="loginForm" class="form active">
+            <h2>Acceso al sistema</h2>
+
+            <div class="input-group">
+              <label for="loginUser">Usuario</label>
+              <input type="text" id="loginUser" placeholder="Ingrese su usuario" required />
+            </div>
+
+            <div class="input-group">
+              <label for="loginPassword">Contraseña</label>
+              <input type="password" id="loginPassword" placeholder="Ingrese su contraseña" required />
+            </div>
+
+            <button type="submit" class="primary-btn">Entrar</button>
+
+            <p class="helper-text">Acceso permitido solo para usuarios autorizados del sistema.</p>
+          </form>
+
+          <form id="registerForm" class="form">
+            <div class="form-head">
+              <h2 id="registerFormTitle">Crear nuevo usuario</h2>
+              <button type="button" class="text-btn hidden" id="cancelEditUserBtn">Cancelar edición</button>
+            </div>
+
+            <input type="hidden" id="editingUserId" />
+
+            <div class="grid-2">
+              <div class="input-group">
+                <label for="registerName">Nombre completo</label>
+                <input type="text" id="registerName" placeholder="Nombre del usuario" required />
+              </div>
+
+              <div class="input-group">
+                <label for="registerUsername">Usuario</label>
+                <input type="text" id="registerUsername" placeholder="Nombre de usuario" required />
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="input-group">
+                <label for="registerEmail">Correo personal</label>
+                <input type="email" id="registerEmail" placeholder="correo@ejemplo.com" required />
+              </div>
+
+              <div class="input-group">
+                <label for="registerPhone">Teléfono</label>
+                <input type="text" id="registerPhone" placeholder="809-000-0000" required />
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="input-group">
+                <label for="registerRole">Rol</label>
+                <select id="registerRole" required>
+                  <option value="">Seleccione</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label for="registerProvince">Provincia asignada</label>
+                <select id="registerProvince" required>
+                  <option value="">Seleccione una provincia</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div class="input-group">
+                <label for="registerRegion">Región</label>
+                <input type="text" id="registerRegion" placeholder="Región" />
+              </div>
+
+              <div class="input-group">
+                <label for="registerMunicipio">Municipio</label>
+                <input type="text" id="registerMunicipio" placeholder="Municipio" />
+              </div>
+
+              <div class="input-group">
+                <label for="registerDistrito">Distrito</label>
+                <input type="text" id="registerDistrito" placeholder="Distrito" />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="registerZone">Zona o demarcación</label>
+              <input type="text" id="registerZone" placeholder="Zona asignada" required />
+            </div>
+
+            <div class="grid-2">
+              <div class="input-group">
+                <label for="registerPassword">Contraseña</label>
+                <input type="password" id="registerPassword" placeholder="Cree una contraseña" required />
+              </div>
+
+              <div class="input-group">
+                <label for="registerPasswordConfirm">Confirmar contraseña</label>
+                <input type="password" id="registerPasswordConfirm" placeholder="Repita la contraseña" required />
+              </div>
+            </div>
+
+            <button type="submit" class="primary-btn" id="saveUserBtn">Crear usuario</button>
+
+            <p class="helper-text" id="firstUserHint">El sistema permite crear usuarios con distintos niveles de acceso según la estructura operativa.</p>
+          </form>
+
+          <div class="status-message" id="authMessage"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-section hidden" id="dashboardSection">
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="mini-logo">
+            <img src="Logos/UnaPoliticaDiferente1.jpeg" alt="Logo" />
+          </div>
+
+          <div>
+            <span class="panel-tag">Panel interno</span>
+            <h2>Centro de control</h2>
+            <p id="currentUserInfo">Bienvenido</p>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="secondary-btn hidden" id="manageUsersBtn" type="button">Gestionar usuarios</button>
+          <button class="secondary-btn" id="exportBtn" type="button">Descargar Excel</button>
+          <button class="danger-btn" id="logoutBtn" type="button">Cerrar sesión</button>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="stat-card">
+          <span>Total de registros visibles</span>
+          <h3 id="totalVoters">0</h3>
+        </article>
+
+        <article class="stat-card">
+          <span>Usuarios visibles</span>
+          <h3 id="totalUsers">0</h3>
+        </article>
+
+        <article class="stat-card">
+          <span>Registros del día</span>
+          <h3 id="todayVoters">0</h3>
+        </article>
+
+        <article class="stat-card">
+          <span>Provincias visibles</span>
+          <h3 id="activeProvinces">0</h3>
+        </article>
+      </section>
+
+      <section class="analytics-grid">
+        <div class="card chart-card">
+          <div class="card-header row-between">
+            <div>
+              <h3>Registros por provincia</h3>
+              <p>Resumen visual de la distribución territorial registrada.</p>
+            </div>
+            <span class="badge" id="chartSummaryBadge">0 provincias activas</span>
+          </div>
+
+          <div class="chart-canvas-wrap">
+            <canvas id="provinceChart" height="320"></canvas>
+          </div>
+        </div>
+
+        <div class="card ranking-card">
+          <div class="card-header">
+            <h3>Ranking territorial</h3>
+            <p>Provincias con mayor cantidad de registros visibles.</p>
+          </div>
+          <div class="ranking-list" id="provinceRanking"></div>
+        </div>
+      </section>
+
+      <section class="main-grid">
+        <div class="card form-card">
+          <div class="card-header">
+            <div class="form-head">
+              <div>
+                <h3 id="voterFormTitle">Registrar votante / simpatizante</h3>
+                <p id="voterFormDescription">Complete los datos requeridos de forma organizada y precisa.</p>
+              </div>
+              <button type="button" class="text-btn hidden" id="cancelEditVoterBtn">Cancelar edición</button>
+            </div>
+          </div>
+
+          <form id="voterForm">
+            <input type="hidden" id="editingVoterId" />
+
+            <div class="grid-2">
+              <div class="input-group">
+                <label for="voterName">Nombre completo</label>
+                <input type="text" id="voterName" required />
+              </div>
+
+              <div class="input-group">
+                <label for="voterCedula">Cédula</label>
+                <input type="text" id="voterCedula" placeholder="000-0000000-0" required />
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div class="input-group">
+                <label for="voterPhone">Teléfono</label>
+                <input type="text" id="voterPhone" placeholder="809-000-0000" required />
+              </div>
+
+              <div class="input-group">
+                <label for="voterProvince">Provincia</label>
+                <select id="voterProvince" required>
+                  <option value="">Seleccione una provincia</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label for="voterRegion">Región</label>
+                <input type="text" id="voterRegion" placeholder="Región" />
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div class="input-group">
+                <label for="voterMunicipio">Municipio</label>
+                <input type="text" id="voterMunicipio" required />
+              </div>
+
+              <div class="input-group">
+                <label for="voterDistrito">Distrito</label>
+                <input type="text" id="voterDistrito" />
+              </div>
+
+              <div class="input-group">
+                <label for="voterZone">Zona</label>
+                <input type="text" id="voterZone" required />
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div class="input-group">
+                <label for="voterSector">Sector</label>
+                <input type="text" id="voterSector" required />
+              </div>
+
+              <div class="input-group">
+                <label for="voterMesa">Mesa</label>
+                <input type="text" id="voterMesa" required />
+              </div>
+
+              <div class="input-group">
+                <label for="voterRecinto">Recinto</label>
+                <input type="text" id="voterRecinto" required />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="voterObservation">Observación</label>
+              <textarea id="voterObservation" rows="3" placeholder="Observación o condición importante"></textarea>
+            </div>
+
+            <button type="submit" class="primary-btn" id="saveVoterBtn">Guardar registro</button>
+          </form>
+
+          <div class="status-message" id="voterMessage"></div>
+        </div>
+
+        <div class="card search-card">
+          <div class="card-header">
+            <h3>Consulta y filtros</h3>
+            <p>Filtre por nombre, cédula, registrador, rol o territorio.</p>
+          </div>
+
+          <div class="input-group">
+            <label for="searchInput">Búsqueda general</label>
+            <input type="text" id="searchInput" placeholder="Nombre, cédula, teléfono, recinto, zona..." />
+          </div>
+
+          <div class="grid-2 compact-grid">
+            <div class="input-group">
+              <label for="filterProvince">Provincia</label>
+              <select id="filterProvince">
+                <option value="">Todas</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="filterMunicipio">Municipio</label>
+              <select id="filterMunicipio">
+                <option value="">Todos</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2 compact-grid">
+            <div class="input-group">
+              <label for="filterSector">Sector</label>
+              <select id="filterSector">
+                <option value="">Todos</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="filterMesa">Mesa</label>
+              <select id="filterMesa">
+                <option value="">Todas</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2 compact-grid">
+            <div class="input-group">
+              <label for="filterRole">Rol registrador</label>
+              <select id="filterRole">
+                <option value="">Todos</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="filterRegistrar">Registrador</label>
+              <select id="filterRegistrar">
+                <option value="">Todos</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="clear-btn" id="clearFiltersBtn" type="button">Limpiar filtros</button>
+
+          <div class="search-results" id="searchResults"></div>
+        </div>
+      </section>
+
+      <section class="card table-card">
+        <div class="card-header row-between">
+          <div>
+            <h3>Registros visibles</h3>
+            <p>Listado consolidado según el nivel de acceso del usuario autenticado.</p>
+          </div>
+          <div class="badge-box">
+            <span class="badge" id="filteredCountBadge">0 resultados</span>
+          </div>
+        </div>
+
+        <div class="table-wrap table-wrap-fixed">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Cédula</th>
+                <th>Teléfono</th>
+                <th>Región</th>
+                <th>Provincia</th>
+                <th>Municipio</th>
+                <th>Distrito</th>
+                <th>Zona</th>
+                <th>Sector</th>
+                <th>Mesa</th>
+                <th>Recinto</th>
+                <th>Observación</th>
+                <th>Registrado por</th>
+                <th>Rol</th>
+                <th>Fecha</th>
+                <th id="voterActionsHead">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="votersTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card users-card" id="usersSection">
+        <div class="card-header row-between">
+          <div>
+            <h3>Usuarios del sistema</h3>
+            <p>Gestión interna de accesos y perfiles autorizados.</p>
+          </div>
+          <span class="soft-note" id="userPermissionsNote">Visualización según permisos</span>
+        </div>
+
+        <div class="table-wrap table-wrap-fixed">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Usuario</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Teléfono</th>
+                <th>Región</th>
+                <th>Provincia</th>
+                <th>Municipio</th>
+                <th>Distrito</th>
+                <th>Zona</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  
+    <div class="modal-overlay hidden" id="userEditModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <h3>Editar usuario del sistema</h3>
+            <p>Actualice la información básica del usuario sin salir del dashboard.</p>
+          </div>
+          <button type="button" class="modal-close-btn" id="closeUserEditModalBtn">×</button>
+        </div>
+
+        <form id="userEditForm">
+          <input type="hidden" id="editUserId" />
+
+          <div class="grid-2">
+            <div class="input-group">
+              <label for="editUserName">Nombre completo</label>
+              <input type="text" id="editUserName" placeholder="Nombre del usuario" required />
+            </div>
+
+            <div class="input-group">
+              <label for="editUserUsername">Usuario</label>
+              <input type="text" id="editUserUsername" placeholder="Nombre de usuario" required />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="input-group">
+              <label for="editUserEmail">Correo personal</label>
+              <input type="email" id="editUserEmail" placeholder="correo@ejemplo.com" required />
+            </div>
+
+            <div class="input-group">
+              <label for="editUserPhone">Teléfono</label>
+              <input type="text" id="editUserPhone" placeholder="809-000-0000" required />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="input-group">
+              <label for="editUserRole">Rol</label>
+              <select id="editUserRole" required>
+                <option value="">Seleccione</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="editUserProvince">Provincia asignada</label>
+              <select id="editUserProvince" required>
+                <option value="">Seleccione una provincia</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <div class="input-group">
+              <label for="editUserRegion">Región</label>
+              <input type="text" id="editUserRegion" placeholder="Región" required />
+            </div>
+
+            <div class="input-group">
+              <label for="editUserMunicipio">Municipio</label>
+              <input type="text" id="editUserMunicipio" placeholder="Municipio" required />
+            </div>
+
+            <div class="input-group">
+              <label for="editUserDistrito">Distrito</label>
+              <input type="text" id="editUserDistrito" placeholder="Distrito" required />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="editUserZone">Zona o demarcación</label>
+            <input type="text" id="editUserZone" placeholder="Zona asignada" required />
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="clear-btn" id="cancelUserEditBtn">Cancelar</button>
+            <button type="submit" class="primary-btn">Guardar cambios</button>
+          </div>
+
+          <div class="status-message" id="userEditMessage"></div>
+        </form>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>
