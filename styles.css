@@ -1698,3 +1698,202 @@ body, .sidebar, .topbar, .card, .stat-card, .modal-card,
     padding-bottom: calc(10px + env(safe-area-inset-bottom));
   }
 }
+
+/* Mobile auth final fit - iOS/Android/PWA */
+@media (max-width: 640px) {
+  html, body {
+    min-height: 100%;
+    overflow-x: hidden;
+  }
+
+  #authSection {
+    min-height: 100svh;
+    min-height: 100dvh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    background: var(--surface);
+  }
+
+  .auth-side {
+    flex: 0 0 auto;
+    min-height: 0;
+  }
+
+  .auth-side-inner {
+    flex: 0 0 auto;
+    padding: 16px 20px 12px;
+    overflow: hidden;
+  }
+
+  .auth-hero {
+    flex: 0 0 auto;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .auth-hero-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+
+  .auth-hero-name {
+    font-size: 1rem;
+    line-height: 1.08;
+    margin-bottom: 5px;
+  }
+
+  .auth-hero-sub {
+    font-size: 0.64rem;
+    line-height: 1.2;
+  }
+
+  .auth-main {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .auth-main-inner {
+    flex: 0 0 auto;
+    padding: 14px 18px 10px;
+  }
+
+  .auth-main-header {
+    margin-bottom: 12px;
+  }
+
+  .auth-main-header .auth-brand-pill {
+    margin-bottom: 8px;
+    padding: 3px 10px;
+    font-size: 0.62rem;
+  }
+
+  .auth-main-header h2 {
+    font-size: 1.08rem;
+    line-height: 1.15;
+    margin-bottom: 4px;
+  }
+
+  .auth-main-header p {
+    font-size: 0.76rem;
+    line-height: 1.35;
+  }
+
+  .tabs {
+    margin-bottom: 12px;
+    border-radius: 10px;
+  }
+
+  .tab {
+    padding: 7px 8px;
+    font-size: 0.75rem;
+  }
+
+  .form {
+    gap: 9px;
+  }
+
+  .input-group {
+    gap: 4px;
+  }
+
+  .input-group label {
+    font-size: 0.73rem;
+  }
+
+  .input-group input,
+  .input-group select,
+  .input-group textarea {
+    padding: 8px 12px;
+    min-height: 38px;
+    font-size: 0.78rem;
+    border-radius: 10px;
+  }
+
+  #forgotPasswordBtn {
+    font-size: 0.76rem !important;
+    line-height: 1.2;
+  }
+
+  .primary-btn {
+    min-height: 38px;
+    padding: 8px 14px;
+    font-size: 0.78rem;
+    border-radius: 9px;
+  }
+
+  .helper-text {
+    font-size: 0.66rem;
+    line-height: 1.25;
+    margin-top: 2px !important;
+    text-align: center;
+  }
+
+  .auth-footer {
+    margin-top: auto;
+    padding: 8px 18px calc(10px + env(safe-area-inset-bottom));
+    justify-content: center;
+    gap: 6px 10px;
+    text-align: center;
+    background: var(--surface);
+  }
+
+  .auth-footer-secure,
+  .auth-footer-copy {
+    font-size: 0.62rem;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 380px), (max-height: 680px) and (max-width: 640px) {
+  .auth-side-inner {
+    padding: 12px 18px 10px;
+  }
+
+  .auth-hero-logo {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 6px;
+  }
+
+  .auth-hero-name {
+    font-size: 0.92rem;
+  }
+
+  .auth-hero-sub {
+    font-size: 0.6rem;
+  }
+
+  .auth-main-inner {
+    padding: 12px 14px 8px;
+  }
+
+  .auth-main-header {
+    margin-bottom: 10px;
+  }
+
+  .tabs {
+    margin-bottom: 10px;
+  }
+
+  .form {
+    gap: 8px;
+  }
+
+  .input-group input,
+  .input-group select,
+  .input-group textarea,
+  .primary-btn {
+    min-height: 36px;
+  }
+
+  .auth-footer {
+    padding: 7px 14px calc(8px + env(safe-area-inset-bottom));
+  }
+}
