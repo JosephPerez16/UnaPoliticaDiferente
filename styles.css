@@ -1665,3 +1665,36 @@ body, .sidebar, .topbar, .card, .stat-card, .modal-card,
   transition-duration: 220ms;
   transition-timing-function: ease;
 }
+/* PWA mobile auth fit improvements */
+@media (max-width: 640px) {
+  #authSection {
+    min-height: 100svh;
+    overflow-y: auto;
+  }
+
+  .auth-main {
+    flex: 0 0 auto;
+    overflow: visible;
+  }
+
+  .auth-main-inner {
+    flex: 0 0 auto;
+    padding-bottom: 12px;
+  }
+
+  .auth-footer {
+    margin-top: 0;
+    padding-top: 10px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 400px) {
+  .auth-main-inner {
+    padding-bottom: 8px;
+  }
+
+  .auth-footer {
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+}
